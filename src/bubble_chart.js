@@ -23,14 +23,32 @@ function bubbleChart() {
     1907: { x: (2 * width) / 3, y: height / 2 },
   };
 
+  var toothClassificationCenters = {
+    Incisor: { x: 300, y: height / 2 },
+    Canine: { x: 390.4, y: height / 2 },
+    Premolar: { x: 613.5, y: height / 2 },
+    Molar: { x: 836.5, y: height / 2 },
+    supern: { x: 1059.6, y: height / 2 },
+    Unknown: { x: 1200, y: height / 2 },
+  };
+
   // X locations of the site titles.
   var sitesTitleX = {
-    1904: 160,
-    1907: width - 160,
+    1904: width / 3,
+    1907: (2 * width) / 3,
+  };
+
+  var toothClassificationTitleX = {
+    Incisor: 200,
+    Canine: 390.4,
+    Premolar: 613.5,
+    Molar: 836.5,
+    supern: 1059.6,
+    Unknown: 1282.7,
   };
 
   // @v4 strength to apply to the position forces
-  var forceStrength = 0.03;
+  var forceStrength = 0.04;
 
   // These will be set in create_nodes and create_vis
   var svg = null;
@@ -75,7 +93,7 @@ function bubbleChart() {
   var fillColor = d3
     .scaleOrdinal()
     .domain(["", "stain"])
-    .range(["#fcfbfa", "#a37445"]);
+    .range(["#fcfbfa", "#f5982f"]);
 
   /*
    * This data manipulation function takes the raw data from
@@ -119,7 +137,8 @@ function bubbleChart() {
         // radius: 5,
         // value: +d.total_amount,
         name: d.Title,
-        toothtype: d.toothType_Real,
+        toothMaterial: d.toothType_Real,
+        toothClassification: d.toothClassification,
         site: d.site_number,
         broken: d.Complete_Unbroken,
         staining: d.CulturalMarkers_Staining_colour3,
@@ -232,6 +251,10 @@ function bubbleChart() {
     return siteCenters[d.site].x;
   }
 
+  function nodeToothClassificationPos(d) {
+    return toothClassificationCenters[d.toothClassification].x;
+  }
+
   /*
    * Sets visualization in "single toothtype mode".
    * The site labels are hidden and the force layout
@@ -240,6 +263,7 @@ function bubbleChart() {
    */
   function toothtypeBubbles() {
     hideSiteTitles();
+    hideToothClassificationTitles();
 
     // @v4 Reset the 'x' force to draw the bubbles to the center.
     simulation.force("x", d3.forceX().strength(forceStrength).x(center.x));
@@ -255,10 +279,25 @@ function bubbleChart() {
    * siteCenter of their data's site.
    */
   function splitBubbles() {
+    hideToothClassificationTitles();
     showSiteTitles();
-
+    console.log(siteCenters);
     // @v4 Reset the 'x' force to draw the bubbles to their site centers
     simulation.force("x", d3.forceX().strength(forceStrength).x(nodeSitePos));
+
+    // @v4 We can reset the alpha value and restart the simulation
+    simulation.alpha(1).restart();
+  }
+
+  function splitToothClassificationBubbles() {
+    hideSiteTitles();
+    showToothClassificationTitles();
+
+    // @v4 Reset the 'x' force to draw the bubbles to their site centers
+    simulation.force(
+      "x",
+      d3.forceX().strength(forceStrength).x(nodeToothClassificationPos)
+    );
 
     // @v4 We can reset the alpha value and restart the simulation
     simulation.alpha(1).restart();
@@ -269,6 +308,10 @@ function bubbleChart() {
    */
   function hideSiteTitles() {
     svg.selectAll(".site").remove();
+  }
+
+  function hideToothClassificationTitles() {
+    svg.selectAll(".toothClassification").remove();
   }
 
   /*
@@ -294,6 +337,28 @@ function bubbleChart() {
       });
   }
 
+  function showToothClassificationTitles() {
+    // Another way to do this would be to create
+    // the site texts once and then just hide them.
+    var toothClassificationData = d3.keys(toothClassificationTitleX);
+    var toothClassifications = svg
+      .selectAll(".toothClassification")
+      .data(toothClassificationData);
+
+    toothClassifications
+      .enter()
+      .append("text")
+      .attr("class", "toothClassification")
+      .attr("x", function (d) {
+        return toothClassificationTitleX[d];
+      })
+      .attr("y", 40)
+      .attr("text-anchor", "middle")
+      .text(function (d) {
+        return d;
+      });
+  }
+
   /*
    * Function called on mouseover to display the
    * details of a bubble in the tooltip.
@@ -310,7 +375,7 @@ function bubbleChart() {
       d.site +
       "</span><br/>" +
       '<span class="name">Broken or Unbroken?: </span><span class="value">' +
-      d.broken +
+      d.toothClassification +
       "</span><br/>" +
       '<span class="name">Staining?: </span><span class="value">' +
       d.stain_colour +
@@ -324,7 +389,7 @@ function bubbleChart() {
    */
   function hideDetail(d) {
     // reset outline
-    d3.select(this).attr("stroke", d3.rgb(fillColor(d.toothtype)).darker());
+    d3.select(this).attr("stroke", d3.rgb(fillColor(d.toothMaterial)).darker());
 
     tooltip.hideTooltip();
   }
@@ -339,6 +404,8 @@ function bubbleChart() {
   chart.toggleDisplay = function (displayName) {
     if (displayName === "site") {
       splitBubbles();
+    } else if (displayName === "toothClassification") {
+      splitToothClassificationBubbles();
     } else {
       toothtypeBubbles();
     }
@@ -390,23 +457,6 @@ function setupButtons() {
       myBubbleChart.toggleDisplay(buttonId);
     });
 }
-
-/*
- * Helper function to convert a number into a string
- * and add commas to it to improve presentation.
- */
-// function addCommas(nStr) {
-//   nStr += "";
-//   var x = nStr.split(".");
-//   var x1 = x[0];
-//   var x2 = x.length > 1 ? "." + x[1] : "";
-//   var rgx = /(\d+)(\d{3})/;
-//   while (rgx.test(x1)) {
-//     x1 = x1.replace(rgx, "$1" + "," + "$2");
-//   }
-
-//   return x1 + x2;
-// }
 
 // Load the data.
 d3.csv("data/test_dataset.csv", display);
