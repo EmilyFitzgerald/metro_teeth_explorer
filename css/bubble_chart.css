@@ -3,7 +3,8 @@ a, a:visited, a:active {
 }
 
 .container {
-  max-width: 900px;
+  /* max-width: 900px; */
+  max-width: 90%;
   margin: auto;
 }
 
@@ -24,10 +25,13 @@ a, a:visited, a:active {
 
 
 #vis {
-  width: 940px;
-  height: 600px;
+  /* width: 1175px; */
+  /* height: 800px; */
+  width: 100%;
+  /* height: 90%; */
   clear: both;
   margin-bottom: 10px;
+  background-color: #43ADB8;
 }
 
 #toolbar {
