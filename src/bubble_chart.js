@@ -143,6 +143,7 @@ function bubbleChart() {
         broken: d.Complete_Unbroken,
         staining: d.CulturalMarkers_Staining_colour3,
         stain_colour: d.CulturalMarkers_Staining_colour1,
+        tooth_link: d.url,
         x: Math.random() * 900,
         y: Math.random() * 800,
       };
@@ -204,7 +205,11 @@ function bubbleChart() {
       })
       .attr("stroke-width", 0.5)
       .on("mouseover", showDetail)
-      .on("mouseout", hideDetail);
+      .on("mouseout", hideDetail)
+      .on("click", function (d) {
+        console.log("URL clicked: ", d.tooth_link);
+        window.open(d.tooth_link, "_blank");
+      });
 
     // @v4 Merge the original empty selection and the enter selection
     bubbles = bubbles.merge(bubblesE);
