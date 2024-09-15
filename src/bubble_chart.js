@@ -23,6 +23,12 @@ function bubbleChart() {
     1907: { x: (2 * width) / 3, y: height / 2 },
   };
 
+  // X locations of the site titles.
+  var sitesTitleX = {
+    1904: 450,
+    1907: 1080,
+  };
+
   var toothClassificationCenters = {
     Incisor: { x: 300, y: height / 2 },
     Canine: { x: 390.4, y: height / 2 },
@@ -32,19 +38,13 @@ function bubbleChart() {
     Unknown: { x: 1200, y: height / 2 },
   };
 
-  // X locations of the site titles.
-  var sitesTitleX = {
-    1904: width / 3,
-    1907: (2 * width) / 3,
-  };
-
   var toothClassificationTitleX = {
-    Incisor: 200,
-    Canine: 390.4,
-    Premolar: 613.5,
+    Incisor: 150,
+    Canine: 350,
+    Premolar: 600,
     Molar: 836.5,
-    supern: 1059.6,
-    Unknown: 1282.7,
+    supern: 1150,
+    Unknown: 1350,
   };
 
   // @v4 strength to apply to the position forces
@@ -335,7 +335,7 @@ function bubbleChart() {
       .attr("x", function (d) {
         return sitesTitleX[d];
       })
-      .attr("y", 40)
+      .attr("y", 80)
       .attr("text-anchor", "middle")
       .text(function (d) {
         return d;
@@ -357,7 +357,7 @@ function bubbleChart() {
       .attr("x", function (d) {
         return toothClassificationTitleX[d];
       })
-      .attr("y", 40)
+      .attr("y", 140)
       .attr("text-anchor", "middle")
       .text(function (d) {
         return d;
