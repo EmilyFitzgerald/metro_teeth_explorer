@@ -17,8 +17,8 @@ a, a:visited, a:active {
 
 .container {
   /* max-width: 900px; */
-  max-width: 90%;
-  margin: auto;
+  max-width: 1450px;
+  margin: 50px;
 }
 
 .button {
@@ -102,4 +102,43 @@ a, a:visited, a:active {
 
 .footer {
   text-align: center;
+  background: #43ADB8;
+  padding: 10px;
+  color: #fff;;
+}
+
+
+.two-columns {
+  
+  column-count: 2;        /* Splits the content into 2 columns */
+  column-gap: 10px;       /* Sets the space between the columns */
+  text-align: left;       /* Ensures both columns are left-aligned */
+  padding-left: 300px;
+}
+  
+
+.unbroken-circle {
+  display: inline-block;  /* Makes the div behave like an inline element */
+  width: 10px;    /* Diameter = 2 * radius (5px radius, so 10px diameter) */
+  height: 10px;   /* Same as width to make it a circle */
+  background-color: #f5982f; /* Color of the circle */
+  /* border: 2px solid #000; */
+  border-radius: 50%;  /* Makes the shape circular */
+}
+
+.broken-circle {
+  display: inline-block;  /* Makes the div behave like an inline element */
+  width: 5px;    /* Diameter = 2 * radius (5px radius, so 10px diameter) */
+  height: 5px;   /* Same as width to make it a circle */
+  background-color: #fcfbfa; /* Color of the circle */
+  /* border: 0.5px solid #000; */
+  border-radius: 50%;  /* Makes the shape circular */
+}
+
+.mould-circle {
+  display: inline-block;  /* Makes the div behave like an inline element */
+  width: 16px;    /* Diameter = 2 * radius (5px radius, so 10px diameter) */
+  height: 16px;   /* Same as width to make it a circle */
+  background-color: #c91c6d; /* Color of the circle */
+  border-radius: 50%;  /* Makes the shape circular */
 }

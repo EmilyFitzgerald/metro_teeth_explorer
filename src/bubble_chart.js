@@ -35,7 +35,7 @@ function bubbleChart() {
     Premolar: { x: 613.5, y: height / 2 },
     Molar: { x: 836.5, y: height / 2 },
     supern: { x: 1059.6, y: height / 2 },
-    Unknown: { x: 1200, y: height / 2 },
+    Unknown: { x: 1175, y: height / 2 },
   };
 
   var toothClassificationTitleX = {
@@ -92,8 +92,8 @@ function bubbleChart() {
   // @v4 scales now have a flattened naming scheme
   var fillColor = d3
     .scaleOrdinal()
-    .domain(["", "stain"])
-    .range(["#fcfbfa", "#f5982f"]);
+    .domain(["", "stain", "denture", "photo_demo"])
+    .range(["#fcfbfa", "#f5982f", "#c91c6d", "#42e9f5"]);
 
   /*
    * This data manipulation function takes the raw data from
@@ -144,6 +144,7 @@ function bubbleChart() {
         staining: d.CulturalMarkers_Staining_colour3,
         stain_colour: d.CulturalMarkers_Staining_colour1,
         tooth_link: d.url,
+        image: d.thumbnail,
         x: Math.random() * 900,
         y: Math.random() * 800,
       };
@@ -384,8 +385,12 @@ function bubbleChart() {
       "</span><br/>" +
       '<span class="name">Staining?: </span><span class="value">' +
       d.stain_colour +
-      "</span>";
-
+      "</span><br/>" +
+      '<span><img src="' +
+      d.image +
+      '" alt="image of ' +
+      d.name +
+      '"></span>';
     tooltip.showTooltip(content, d3.event);
   }
 
