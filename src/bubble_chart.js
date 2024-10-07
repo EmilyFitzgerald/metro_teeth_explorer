@@ -6,6 +6,17 @@
  * https://bost.ocks.org/mike/chart/
  *
  */
+
+fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/")
+  .then((response) => response.json())
+  .then((data) => {
+    // Now you have the data and can use it for your bubble chart visualization
+    console.log(data);
+    // Add logic to render your bubble chart with the 'data' array
+  })
+  .catch((error) => console.error("Error fetching data:", error));
+
+
 function bubbleChart() {
   // Constants for sizing
   var width = 1450;
