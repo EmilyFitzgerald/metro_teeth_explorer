@@ -482,7 +482,7 @@ function setupButtons() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("data collected");
+      console.log("data connection attempted");
       // Use the data in your visualization
     })
     .catch((error) => console.error("Error fetching data:", error));
