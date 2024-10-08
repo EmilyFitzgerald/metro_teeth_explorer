@@ -6,6 +6,7 @@
  * https://bost.ocks.org/mike/chart/
  *
  */
+console.log("update has come to the site");
 
 fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/")
   .then((response) => response.json())
