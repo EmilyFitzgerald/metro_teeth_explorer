@@ -8,15 +8,6 @@
  */
 console.log("update has come to the site");
 
-fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/")
-  .then((response) => response.json())
-  .then((data) => {
-    // Now you have the data and can use it for your bubble chart visualization
-    console.log(data);
-    // Add logic to render your bubble chart with the 'data' array
-  })
-  .catch((error) => console.error("Error fetching data:", error));
-
 
 function bubbleChart() {
   // Constants for sizing
@@ -481,7 +472,20 @@ function setupButtons() {
 }
 
 // Load the data.
-d3.csv("data/test_dataset.csv", display);
+// d3.csv("data/test_dataset.csv", display);
+fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/")
+  .then((response) => response.json())
+  .then((data) => {
+    display(data);
+  })
+  .catch((error) => console.error("Error fetching data:", error));
+
+function display(data) {
+  // Your existing logic to process the JSON data
+  // The structure of `data` should be similar to what you expect from the CSV
+}
+
+function display(data) {}
 
 // setup the buttons.
 setupButtons();
