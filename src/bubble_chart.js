@@ -6,7 +6,7 @@
  * https://bost.ocks.org/mike/chart/
  *
  */
-console.log("update has come to the site");
+console.log("checking the cors is now happening");
 
 
 function bubbleChart() {
