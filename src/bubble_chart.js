@@ -471,23 +471,22 @@ function setupButtons() {
 
 // Load the data.
 // d3.csv("data/test_dataset.csv", display);
-  fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
-    method: "GET",
-    headers: {
-      "x-api-key": "5ebb948c-4644-4794-bbcc-50f8e159f7a5",
-    },
-    mode: "cors",
+fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
+  method: "GET",
+  headers: {
+    "x-api-key": "5ebb948c-4644-4794-bbcc-50f8e159f7a5",
+  },
+  mode: "cors",
+})
+  .then((response) => response.json())
+  .then((data) => {
+    // Initialize the bubble chart with the fetched data
+    myBubbleChart("#vis", data);
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("data connection attempted x 2");
-      // Use the data in your visualization
-    })
-    .catch((error) => console.error("Error fetching data:", error));
-
-function display(data) {
-  // var nodes = createNodes(data);
-}
+  .catch((error) => console.error("Error fetching data:", error));
 
 // setup the buttons.
 setupButtons();
+
+
+
