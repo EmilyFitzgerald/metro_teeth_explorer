@@ -482,18 +482,14 @@ function setupButtons() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log("data collected");
       // Use the data in your visualization
     })
     .catch((error) => console.error("Error fetching data:", error));
 
-
 function display(data) {
-  // Your existing logic to process the JSON data
-  // The structure of `data` should be similar to what you expect from the CSV
+  var nodes = createNodes(data);
 }
-
-function display(data) {}
 
 // setup the buttons.
 setupButtons();
