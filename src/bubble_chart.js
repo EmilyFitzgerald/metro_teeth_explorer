@@ -473,12 +473,19 @@ function setupButtons() {
 
 // Load the data.
 // d3.csv("data/test_dataset.csv", display);
-fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/")
-  .then((response) => response.json())
-  .then((data) => {
-    display(data);
+  fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/", {
+    method: "GET",
+    headers: {
+      "x-api-key": "5ebb948c-4644-4794-bbcc-50f8e159f7a5",
+    },
   })
-  .catch((error) => console.error("Error fetching data:", error));
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // Use the data in your visualization
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+
 
 function display(data) {
   // Your existing logic to process the JSON data
