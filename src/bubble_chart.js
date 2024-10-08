@@ -6,8 +6,6 @@
  * https://bost.ocks.org/mike/chart/
  *
  */
-console.log("checking the cors is now happening");
-
 
 function bubbleChart() {
   // Constants for sizing
@@ -482,13 +480,13 @@ function setupButtons() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("data connection attempted");
+      console.log("data connection attempted x 2");
       // Use the data in your visualization
     })
     .catch((error) => console.error("Error fetching data:", error));
 
 function display(data) {
-  var nodes = createNodes(data);
+  // var nodes = createNodes(data);
 }
 
 // setup the buttons.
