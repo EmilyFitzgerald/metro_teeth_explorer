@@ -498,21 +498,6 @@ if (!apiKey || apiKey === "default-placeholder-key") {
   .catch((error) => console.error("Error fetching data:", error));
 }
 
-// fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
-//   method: "GET",
-//   headers: {
-//     "x-api-key": apiKey,
-//   },
-//   mode: "cors",
-// })
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   // Initialize the bubble chart with the fetched data
-  //   myBubbleChart("#vis", data);
-  // })
-  // .catch((error) => console.error("Error fetching data:", error));
-
-// setup the buttons.
 setupButtons();
 
 
