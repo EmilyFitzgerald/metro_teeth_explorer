@@ -480,7 +480,7 @@ function setupButtons() {
 fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
   method: "GET",
   headers: {
-    "x-api-key": "5ebb948c-4644-4794-bbcc-50f8e159f7a5",
+    "x-api-key": process.env.API_KEY,
   },
   mode: "cors",
 })
