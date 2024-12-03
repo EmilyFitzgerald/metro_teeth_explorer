@@ -489,6 +489,7 @@ fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
   .then((response) => response.json())
   .then((data) => {
     // Initialize the bubble chart with the fetched data
+    console.log(window.CONFIG);
     myBubbleChart("#vis", data);
   })
   .catch((error) => console.error("Error fetching data:", error));
