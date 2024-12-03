@@ -478,7 +478,22 @@ function setupButtons() {
 
 
 // Load the data.
-const apiKey = window.CONFIG.API_KEY;
+console.log("checking for updates");
+console.log(window.CONFIG);
+
+const apiKey = window.CONFIG?.API_KEY || "default-placeholder-key";
+
+if (!apiKey || apiKey === "default-placeholder-key") {
+  console.error("API Key is missing or not configured correctly.");
+} else {
+  fetch("https://example.com/api/data", {
+    method: "GET",
+    headers: {
+      "x-api-key": apiKey,
+    },
+  });
+}
+
 fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
   method: "GET",
   headers: {
@@ -489,7 +504,6 @@ fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
   .then((response) => response.json())
   .then((data) => {
     // Initialize the bubble chart with the fetched data
-    console.log(window.CONFIG);
     myBubbleChart("#vis", data);
   })
   .catch((error) => console.error("Error fetching data:", error));
