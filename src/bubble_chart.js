@@ -93,8 +93,8 @@ function bubbleChart() {
   // @v4 scales now have a flattened naming scheme
   var fillColor = d3
     .scaleOrdinal()
-    .domain(["", "stain", "denture", "photo_demo"])
-    .range(["#fcfbfa", "#f5982f", "#c91c6d", "#42e9f5"]);
+    .domain(["", "stain", "denture"])
+    .range(["#fcfbfa", "#f5982f", "#c91c6d"]);
 
   /*
    * This data manipulation function takes the raw data from
