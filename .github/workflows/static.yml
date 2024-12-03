@@ -38,8 +38,8 @@ jobs:
         with:
           # Upload entire repository
           path: '.'
-      - name: Expose API Key
-        run: echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
+      - name: tell me a secret
+        run: echo "my existing secret is ${{ secrets.API_KEY }}"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
