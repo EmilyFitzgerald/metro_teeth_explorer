@@ -38,10 +38,9 @@ jobs:
         with:
           # Upload entire repository
           path: '.'
-      - name: access data
-        run: echo "my existing secret is ${{ secrets.API_KEY }}"
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
+      - name: Inject API Key
+        run: |
+          echo "window.CONFIG = { API_KEY: '${{ secrets.API_KEY }}' };" > config.js
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

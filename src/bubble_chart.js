@@ -475,12 +475,14 @@ function setupButtons() {
     });
 }
 
+
+
 // Load the data.
-// d3.csv("data/test_dataset.csv", display);
+const apiKey = window.CONFIG.API_KEY;
 fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
   method: "GET",
   headers: {
-    "x-api-key": process.env.API_KEY,
+    "x-api-key": apiKey,
   },
   mode: "cors",
 })
