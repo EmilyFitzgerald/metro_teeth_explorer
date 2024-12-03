@@ -138,6 +138,7 @@ function bubbleChart() {
         // radius: 5,
         // value: +d.total_amount,
         name: d.Title,
+        t_type: d.Tooth_Type,
         toothMaterial: d.toothType_Real,
         toothClassification: d.toothClassification,
         site: d.site_number,
@@ -145,7 +146,7 @@ function bubbleChart() {
         staining: d.CulturalMarkers_Staining_colour3,
         stain_colour: d.CulturalMarkers_Staining_colour1,
         tooth_link: d.url,
-        image: d.thumbnail,
+        image: d.thumbnail ? d.thumbnail : "-",
         x: Math.random() * 900,
         y: Math.random() * 800,
       };
@@ -378,20 +379,25 @@ function bubbleChart() {
       '<span class="name">Title: </span><span class="value">' +
       d.name +
       "</span><br/>" +
+      '<span class="name">Tooth Type: </span><span class="value">' +
+      d.t_type +
+      "</span><br/>" +
       '<span class="name">Site: </span><span class="value">' +
       d.site +
       "</span><br/>" +
       '<span class="name">Broken or Unbroken?: </span><span class="value">' +
-      d.toothClassification +
+      d.broken +
       "</span><br/>" +
       '<span class="name">Staining?: </span><span class="value">' +
       d.stain_colour +
       "</span><br/>" +
-      '<span><img src="' +
-      d.image +
-      '" alt="image of ' +
-      d.name +
-      '"></span>';
+      (d.image !== "-"
+        ? '<span><img src="' +
+          d.image +
+          '" alt="image of ' +
+          d.name +
+          '"></span>'
+        : "<span>No image available</span>");
     tooltip.showTooltip(content, d3.event);
   }
 
@@ -474,8 +480,7 @@ function setupButtons() {
 fetch("https://metro-teeth-d970a7c6a53a.herokuapp.com/data", {
   method: "GET",
   headers: {
-    "x-api-key": "${{ secrets.API_KEY }}";
-      // "5ebb948c-4644-4794-bbcc-50f8e159f7a5",
+    "x-api-key": "5ebb948c-4644-4794-bbcc-50f8e159f7a5",
   },
   mode: "cors",
 })
