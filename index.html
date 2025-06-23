@@ -12,27 +12,29 @@
 </head>
 <body>
   <div class="legend">
-      <h3>Legend</h3>
-      <div class="two-columns" >
-        <p>
-          <div class="broken-circle"></div> <div class="broken-circle" style="background-color: #f5982f;"></div> : Small Circle - Broken Tooth <br>
-          <div class="unbroken-circle" style="background-color: #fcfbfa;"></div> <div class="unbroken-circle"></div>  <div class="unbroken-circle" style="background-color: #c91c6d";"></div> : Medium Circle - Unbroken Tooth<br>
-          <div class="mould-circle"></div> : Large Circle - Denture Mould 
-        </p>
-        <p>
-          <div class="unbroken-circle" style="background-color: #fcfbfa;"></div> <div class="broken-circle"></div> : White Circle - No record of staining<br>
-          <div class="unbroken-circle"></div> <div class="broken-circle" style="background-color: #f5982f;"></div> : Orange Circle - stained <br>
-          <div class="mould-circle"></div> <div class="unbroken-circle" style="background-color: #c91c6d;"></div>: Pink Circle - Denture 
-        </p>
+    <div class="legend">
+        <h3>Legend</h3>
+        <div class="two-columns" >
+          <p>
+            <div class="broken-circle"></div> <div class="broken-circle" style="background-color: #f5982f;"></div> : Small Circle - Broken Tooth <br>
+            <div class="unbroken-circle" style="background-color: #fcfbfa;"></div> <div class="unbroken-circle"></div>  <div class="unbroken-circle" style="background-color: #c91c6d";"></div> : Medium Circle - Unbroken Tooth<br>
+            <div class="mould-circle"></div> : Large Circle - Denture Mould 
+          </p>
+          <p>
+            <div class="unbroken-circle" style="background-color: #fcfbfa;"></div> <div class="broken-circle"></div> : White Circle - No record of staining<br>
+            <div class="unbroken-circle"></div> <div class="broken-circle" style="background-color: #f5982f;"></div> : Orange Circle - stained <br>
+            <div class="mould-circle"></div> <div class="unbroken-circle" style="background-color: #c91c6d;"></div>: Pink Circle - Denture 
+          </p>
+          </div>
         </div>
+    <div class="container">
+      <div id="toolbar">
+        <a href="#" id="all" class="button active">All Teeth</a>
+        <a href="#" id="site" class="button">Teeth by Site</a>
+        <a href="#" id="toothClassification" class="button">Teeth by Type</a>
       </div>
-  <div class="container">
-    <div id="toolbar">
-      <a href="#" id="all" class="button active">All Teeth</a>
-      <a href="#" id="site" class="button">Teeth by Site</a>
-      <a href="#" id="toothClassification" class="button">Teeth by Type</a>
+      <div id="vis"></div>
     </div>
-    <div id="vis"></div>
   </div>
 
   <script src="//d3js.org/d3.v4.min.js"></script>
