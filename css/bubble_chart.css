@@ -107,6 +107,13 @@ a, a:visited, a:active {
   color: #fff;;
 }
 
+.legend {
+  text-align: center;
+  background: #43ADB8;
+  padding: 10px;
+  color: #fff;;
+}
+
 
 .two-columns {
   
